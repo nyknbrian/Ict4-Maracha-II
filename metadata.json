@@ -1,0 +1,6 @@
+{
+  "name": "ICT4Maracha",
+  "description": "A community-driven digital initiative bridging the digital divide in rural secondary schools of Maracha, West Nile, Uganda by providing access to computers, power solutions, and digital skills training.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
