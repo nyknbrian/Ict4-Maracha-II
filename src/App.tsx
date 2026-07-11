@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Header from './components/Header';
 import StorySection from './components/StorySection';
 import ChallengesSection from './components/ChallengesSection';
+import ObjectivesSection from './components/ObjectivesSection';
 import BudgetCalculator from './components/BudgetCalculator';
 import SupportForm from './components/SupportForm';
 import Footer from './components/Footer';
@@ -15,6 +16,7 @@ import { BookOpen, Compass, Shield, ArrowRight, Star, GraduationCap } from 'luci
 export default function App() {
   // Shared state connecting co-funding simulator with partner registration form
   const [selectedSimulation, setSelectedSimulation] = useState<Record<string, number>>({});
+  const [sponsorAmount, setSponsorAmount] = useState<number>(250);
 
   const clearSimulation = () => {
     setSelectedSimulation({});
@@ -73,6 +75,29 @@ export default function App() {
                   </a>
                 </div>
 
+                {/* Custom sliding timeline track mimicking the inspiration layout's slider pill */}
+                <div className="pt-2">
+                  <div className="inline-flex flex-wrap items-center gap-3 bg-slate-100/80 border border-slate-200/80 p-2.5 px-4 rounded-[20px] shadow-sm text-[11px] font-mono text-slate-600 max-w-full">
+                    <span className="flex items-center gap-1.5 font-bold text-slate-800">
+                      <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                      Erect Hub
+                    </span>
+                    <div className="flex items-center px-1">
+                      <div className="h-[2px] w-14 bg-slate-300 relative">
+                        <div className="absolute top-1/2 left-2/5 -translate-y-1/2 h-3 w-3 bg-blue-600 border border-white rounded-full shadow-sm hover:scale-110 transition-transform cursor-pointer" />
+                      </div>
+                    </div>
+                    <span className="flex items-center gap-1.5 text-slate-400">
+                      <span className="h-2 w-2 rounded-full bg-slate-300" />
+                      80 Workstations
+                    </span>
+                    <span className="text-slate-300 select-none">|</span>
+                    <div className="bg-blue-600 text-white text-[9px] font-bold uppercase px-2 py-0.5 rounded-full tracking-wider font-sans">
+                      Sponsor
+                    </div>
+                  </div>
+                </div>
+
                 {/* Social Credibility Bullet List */}
                 <div className="pt-6 border-t border-slate-100 grid grid-cols-2 gap-4">
                   <div className="flex items-center gap-2.5 text-xs text-slate-500 font-medium">
@@ -86,42 +111,120 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Right Column: Key Core Pitch Card (Cols 5) */}
-              <div className="lg:col-span-5 flex justify-center">
-                <div className="w-full max-w-sm bg-slate-900 text-white rounded-3xl p-6 shadow-xl ring-1 ring-slate-800 relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 h-32 w-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
-                  
-                  <span className="text-[10px] font-mono tracking-widest text-slate-400 uppercase">PROJECT VISION</span>
-                  <h3 className="font-display font-bold text-xl mt-2 leading-snug">
-                     “Education should be empowering, not just about passing exams”
-                  </h3>
-                  
-                  <blockquote className="mt-4 text-xs font-serif text-slate-300 leading-relaxed italic pl-4 border-l-2 border-blue-500">
-                     "With working computers, trained mentors, and supportive learning spaces, students who might otherwise be left behind can step confidently into the digital future."
-                  </blockquote>
+              {/* Right Column: Key Core Pitch Card (Cols 5) - Inspired by the layout mockup */}
+              <div className="lg:col-span-5 flex justify-center relative">
+                {/* Floating blur circles behind card mimicking design */}
+                <div className="absolute -left-10 -top-10 h-44 w-44 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute -right-6 -bottom-8 h-48 w-48 bg-indigo-500/15 rounded-full blur-2xl pointer-events-none" />
 
-                  {/* High Quality Features Grid */}
-                  <div className="mt-6 pt-6 border-t border-slate-800 space-y-3.5 text-xs">
-                    <div className="flex items-start gap-2.5">
-                      <div className="p-1.5 bg-blue-900/50 text-blue-300 rounded-lg">
-                        <Compass className="h-3.5 w-3.5" />
-                      </div>
-                      <div>
-                        <strong className="block text-slate-100 font-semibold mb-0.5">Scalable Architecture</strong>
-                        <span className="text-slate-400 text-[11px]">Growing from Maracha to Karamoja, Soroti, and Bugisu.</span>
-                      </div>
+                <div className="w-full max-w-sm bg-white border border-slate-200 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.06)] rounded-[32px] p-6 relative overflow-hidden flex flex-col justify-between group hover:border-slate-300 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] transition-all duration-300">
+                  {/* Subtle blur accent on card top left */}
+                  <div className="absolute -top-12 -left-12 h-36 w-36 bg-blue-400/20 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
+                  
+                  {/* Card Navigation Row */}
+                  <div className="flex items-center justify-between z-10">
+                    <div className="flex items-center gap-1.5">
+                      <div className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
+                      <span className="text-[9px] font-mono tracking-widest text-slate-800 font-bold uppercase">
+                        ICT4Maracha
+                      </span>
                     </div>
 
-                    <div className="flex items-start gap-2.5">
-                      <div className="p-1.5 bg-indigo-900/50 text-indigo-300 rounded-lg">
-                        <Star className="h-3.5 w-3.5" />
-                      </div>
-                      <div>
-                        <strong className="block text-slate-100 font-semibold mb-0.5">Practical Skills Training</strong>
-                        <span className="text-slate-400 text-[11px]">Programming, servers, standard office tooling, networking.</span>
-                      </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[9px] font-semibold text-slate-400 font-sans hover:text-slate-600 transition-colors cursor-pointer">
+                        Roots
+                      </span>
+                      <span className="text-[9px] font-semibold text-slate-400 font-sans hover:text-slate-600 transition-colors cursor-pointer">
+                        Impact
+                      </span>
+                      {/* Avatar badge floating near right corner */}
+                      <img
+                        src="/src/assets/images/founder_brian_1782306851692.jpg"
+                        alt="Nyakuni Brian"
+                        className="h-5.5 w-5.5 rounded-full object-cover border border-blue-500 shadow-sm ml-1"
+                        referrerPolicy="no-referrer"
+                      />
                     </div>
                   </div>
+
+                  {/* Giant Headline Mimicking "Healthcare" in mockup */}
+                  <div className="my-5 z-10">
+                    <h3 className="font-display font-black text-slate-900 text-[2.75rem] leading-[0.85] tracking-tighter uppercase select-none">
+                      Digital<br />
+                      <span className="text-blue-600">Equity</span>
+                    </h3>
+                  </div>
+
+                  {/* Mid Portion: Grid Cards from mockup */}
+                  <div className="grid grid-cols-5 gap-3 mb-5 z-10">
+                    {/* Left Mini-Card Card (Dark) */}
+                    <div className="col-span-2 bg-slate-900 text-white rounded-[20px] p-3.5 flex flex-col justify-between shadow-md">
+                      <div className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-semibold">
+                        Llowe
+                      </div>
+                      <div className="mt-2.5">
+                        <span className="text-lg font-black font-display text-white">80</span>
+                        <p className="text-[8px] text-slate-300 font-mono leading-tight mt-0.5 font-semibold">PCs Planned</p>
+                      </div>
+                    </div>
+
+                    {/* Right Mini-Card Card (Light) */}
+                    <div className="col-span-3 bg-slate-50 border border-slate-200/60 rounded-[20px] p-3.5 flex flex-col justify-between">
+                      <div className="text-[9px] font-mono tracking-wider text-slate-400 uppercase font-semibold">
+                        Core Service
+                      </div>
+                      <p className="text-[9px] text-slate-600 leading-normal font-light mt-1.5">
+                        Equipping local classrooms with durable custom workstations, solar plinths, & computer labs.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Bottom Interactive Slider Pill from mockup */}
+                  <div className="bg-slate-50/80 border border-slate-200/80 p-3.5 rounded-2xl shadow-sm z-10 flex flex-col gap-2.5">
+                    <div className="flex items-center justify-between text-[10px] font-mono">
+                      <span className="text-slate-400 uppercase">Interactive Tracker</span>
+                      <span className="text-blue-600 font-bold bg-blue-50 px-1.5 py-0.5 rounded">
+                        Simulating: ${sponsorAmount}
+                      </span>
+                    </div>
+
+                    {/* Custom HTML slider styled to match the thin line + blue dot in mockup */}
+                    <div className="flex items-center gap-3 w-full">
+                      <span className="text-[9px] font-bold text-slate-400 font-mono">Min</span>
+                      <div className="flex-1 relative flex items-center">
+                        <input
+                          type="range"
+                          min="50"
+                          max="2500"
+                          step="50"
+                          value={sponsorAmount}
+                          onChange={(e) => setSponsorAmount(Number(e.target.value))}
+                          className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600 focus:outline-none"
+                          title="Drag to simulate a sponsorship amount"
+                        />
+                      </div>
+                      <span className="text-[9px] font-bold text-slate-400 font-mono">Max</span>
+                    </div>
+
+                    {/* Submit link with blue circular button [ > ] in mockup */}
+                    <div className="flex items-center justify-between border-t border-slate-100 pt-2.5 mt-1">
+                      <span className="text-[9px] font-mono text-slate-500">
+                        Sponsors <span className="text-slate-800 font-bold">{(sponsorAmount / 150).toFixed(1)}</span> pupils/yr
+                      </span>
+
+                      <a
+                        href="#support-form"
+                        className="p-1.5 px-3 bg-blue-600 hover:bg-blue-500 active:scale-95 text-white rounded-full transition-all duration-200 flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-wider shadow-md shadow-blue-500/10 cursor-pointer animate-pulse"
+                        title="Commit Simulation to Partner Form"
+                      >
+                        <span>Select</span>
+                        <div className="h-4 w-4 rounded-full bg-white/20 flex items-center justify-center font-bold">
+                          &gt;
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -133,6 +236,9 @@ export default function App() {
 
         {/* The Digital Deficits & Challenges Section */}
         <ChallengesSection />
+
+        {/* Our Tactical Objectives Inspired by Layout */}
+        <ObjectivesSection />
 
         {/* Fully Interactive Budget & Co-Funding Tool */}
         <BudgetCalculator

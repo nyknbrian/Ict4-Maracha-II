@@ -13,10 +13,10 @@ export const StorySection: React.FC = () => {
   const storyTabs = [
     {
       id: 'village' as const,
-      title: 'Roots in Otoko',
+      title: 'Roots in Etoko',
       label: 'The Beginning',
       icon: MapPin,
-      content: `I’m Brian, born and raised in Maracha, West Nile, Uganda—a place of incredible heart, community, and potential, but also severe geographic and economic hardship. In my home village of Otoko, life is simple and humble. Many homes have thatched roofs, few have access to electricity, and most essential services—education, running water, standard health centers, and paved roads—are severely under-resourced or absent.`,
+      content: `I’m Brian, born and raised in Maracha, West Nile, Uganda—a place of incredible heart, community, and potential, but also severe geographic and economic hardship. In my home village of Etoko, life is simple and humble. Many homes have thatched roofs, few have access to electricity, and most essential services—education, running water, standard health centers, and paved roads—are severely under-resourced or absent.`,
       highlight: 'A place of incredible heart, but deep structural challenges.',
     },
     {
@@ -131,17 +131,25 @@ export const StorySection: React.FC = () => {
               </div>
 
               {/* Founder Tag */}
-              <div className="mt-8 pt-6 border-t border-slate-700/60 flex items-center justify-between">
-                <div>
-                  <h4 className="font-display font-bold text-white text-base">
-                    Nyakuni Brian
-                  </h4>
-                  <p className="text-xs text-slate-400">
-                    Founder, ICT4Maracha Initiative
-                  </p>
+              <div className="mt-8 pt-6 border-t border-slate-700/60 flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <img
+                    src="/src/assets/images/founder_brian_1782306851692.jpg"
+                    alt="Nyakuni Brian"
+                    className="h-12 w-12 rounded-full object-cover border-2 border-blue-500/50 shadow-md"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div>
+                    <h4 className="font-display font-bold text-white text-base">
+                      Nyakuni Brian
+                    </h4>
+                    <p className="text-xs text-slate-400">
+                      Founder, ICT4Maracha Initiative
+                    </p>
+                  </div>
                 </div>
                 <div className="text-xs font-mono bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-lg text-slate-400">
-                  Otoko Village 🇺🇬 West Nile
+                  Etoko Village 🇺🇬 West Nile
                 </div>
               </div>
             </div>

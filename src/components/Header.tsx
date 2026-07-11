@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { Logo } from './Logo';
-import { Heart, Menu, X } from 'lucide-react';
+import { Heart, Menu, X, Twitter } from 'lucide-react';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -13,6 +13,7 @@ export const Header: React.FC = () => {
   const navLinks = [
     { label: "Our Story", href: "#story" },
     { label: "The Challenge", href: "#challenges" },
+    { label: "Our Objectives", href: "#objectives" },
     { label: "Budget & Proposal", href: "#proposal" },
   ];
 
@@ -40,6 +41,16 @@ export const Header: React.FC = () => {
 
           {/* Actions */}
           <div className="hidden md:flex items-center gap-4">
+            <a
+              href="https://x.com/WEBWorkUganda"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-blue-600 rounded-xl transition-all duration-200 flex items-center justify-center"
+              title="Follow @WEBWorkUganda on X (Twitter)"
+            >
+              <Twitter className="h-4 w-4" />
+            </a>
+
             <a
               href="#support-form"
               className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider py-2.5 px-4 rounded-xl flex items-center gap-2 transition-colors"
@@ -72,7 +83,18 @@ export const Header: React.FC = () => {
               {link.label}
             </a>
           ))}
-          <div className="pt-2">
+          <div className="pt-2 space-y-2">
+            <a
+              href="https://x.com/WEBWorkUganda"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors font-mono"
+            >
+              <Twitter className="h-4 w-4 text-blue-500" />
+              @WEBWorkUganda
+            </a>
+
             <a
               href="#support-form"
               onClick={() => setMobileMenuOpen(false)}

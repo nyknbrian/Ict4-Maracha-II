@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { Logo } from './Logo';
-import { Mail, MapPin, Notebook, ArrowUpCircle } from 'lucide-react';
+import { Mail, MapPin, Notebook, ArrowUpCircle, Twitter } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -24,8 +24,27 @@ export const Footer: React.FC = () => {
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
               ICT4Maracha is a grassroots community initiative dedicated to establishing custom-equipped computer labs, networking capabilities, and practical digital learning arrays in under-served Ugandan classrooms.
             </p>
-            <div className="text-[10px] text-slate-500 font-mono">
-              Prepared by: <span className="text-slate-300">Nyakuni Brian</span>
+            <div className="flex items-center gap-2 text-[10px] text-slate-500 font-mono">
+              <img
+                src="/src/assets/images/founder_brian_1782306851692.jpg"
+                alt="Nyakuni Brian"
+                className="h-5 w-5 rounded-full object-cover border border-slate-700"
+                referrerPolicy="no-referrer"
+              />
+              <span>Prepared by: <span className="text-slate-300">Nyakuni Brian</span></span>
+            </div>
+
+            <div className="pt-2 flex items-center gap-3">
+              <a
+                href="https://x.com/WEBWorkUganda"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 bg-slate-800 hover:bg-slate-700 hover:scale-105 active:scale-95 text-slate-300 hover:text-white rounded-xl transition-all duration-200 flex items-center gap-2 text-xs font-mono"
+                title="Follow @WEBWorkUganda on X (Twitter)"
+              >
+                <Twitter className="h-4 w-4 text-blue-400" />
+                <span>@WEBWorkUganda</span>
+              </a>
             </div>
           </div>
 
