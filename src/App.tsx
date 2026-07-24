@@ -11,12 +11,15 @@ import ObjectivesSection from './components/ObjectivesSection';
 import BudgetCalculator from './components/BudgetCalculator';
 import SupportForm from './components/SupportForm';
 import Footer from './components/Footer';
-import { BookOpen, Compass, Shield, ArrowRight, Star, GraduationCap } from 'lucide-react';
+import ProposalModal from './components/ProposalModal';
+import { downloadOfficialProposal } from './data/proposalText';
+import { BookOpen, Shield, ArrowRight, GraduationCap, Download, FileText } from 'lucide-react';
 
 export default function App() {
   // Shared state connecting co-funding simulator with partner registration form
   const [selectedSimulation, setSelectedSimulation] = useState<Record<string, number>>({});
   const [sponsorAmount, setSponsorAmount] = useState<number>(250);
+  const [proposalModalOpen, setProposalModalOpen] = useState(false);
 
   const clearSimulation = () => {
     setSelectedSimulation({});
@@ -39,13 +42,23 @@ export default function App() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               {/* Left Column: Headline and Pitch (Cols 7) */}
               <div className="lg:col-span-7 space-y-6 text-left">
-                {/* Ugandan location badge */}
-                <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-700 px-3.5 py-1 rounded-full text-xs font-semibold tracking-wide shadow-sm">
-                  <span className="flex h-2 w-2 relative">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
-                  </span>
-                  Maracha District • West Nile, Uganda
+                {/* Ugandan location badge & Official Proposal Download Pill */}
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-700 px-3.5 py-1 rounded-full text-xs font-semibold tracking-wide shadow-sm">
+                    <span className="flex h-2 w-2 relative">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+                    </span>
+                    Maracha District • West Nile, Uganda
+                  </div>
+
+                  <button
+                    onClick={() => setProposalModalOpen(true)}
+                    className="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 px-3 py-1 rounded-full text-xs font-mono font-semibold transition-all cursor-pointer"
+                  >
+                    <FileText className="h-3 w-3 text-blue-600" />
+                    <span>Official Proposal v1.0</span>
+                  </button>
                 </div>
 
                 <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-none leading-[0.95]">
@@ -57,20 +70,28 @@ export default function App() {
                 </p>
 
                 {/* Main Action Triggers */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-                  <a
-                    href="#proposal"
-                    className="bg-blue-600 hover:bg-blue-500 active:scale-[0.99] text-white text-sm font-bold uppercase tracking-wider py-4 px-6 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-blue-500/10 transition-all cursor-pointer"
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+                  <button
+                    onClick={() => setProposalModalOpen(true)}
+                    className="bg-blue-600 hover:bg-blue-500 active:scale-[0.99] text-white text-xs sm:text-sm font-bold uppercase tracking-wider py-4 px-5 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-blue-500/10 transition-all cursor-pointer"
                   >
                     <BookOpen className="h-4 w-4" />
-                    Review Investment Proposal
-                  </a>
+                    Review Official Proposal
+                  </button>
+
+                  <button
+                    onClick={downloadOfficialProposal}
+                    className="bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 text-xs sm:text-sm font-bold uppercase tracking-wider py-4 px-5 rounded-2xl flex items-center justify-center gap-2 transition-all cursor-pointer font-mono"
+                  >
+                    <Download className="h-4 w-4 text-blue-600" />
+                    Download Proposal (.PDF)
+                  </button>
                   
                   <a
                     href="#support-form"
-                    className="bg-slate-900 hover:bg-slate-800 active:scale-[0.99] text-white text-sm font-bold uppercase tracking-wider py-4 px-6 rounded-2xl flex items-center justify-center gap-2 transition-all cursor-pointer"
+                    className="bg-slate-900 hover:bg-slate-800 active:scale-[0.99] text-white text-xs sm:text-sm font-bold uppercase tracking-wider py-4 px-5 rounded-2xl flex items-center justify-center gap-2 transition-all cursor-pointer"
                   >
-                    Partner/Sponsor Now
+                    Partner/Sponsor
                     <ArrowRight className="h-4 w-4 text-emerald-400" />
                   </a>
                 </div>
@@ -102,7 +123,7 @@ export default function App() {
                 <div className="pt-6 border-t border-slate-100 grid grid-cols-2 gap-4">
                   <div className="flex items-center gap-2.5 text-xs text-slate-500 font-medium">
                     <GraduationCap className="h-4 w-4 text-blue-500" />
-                    <span>Serving 200+ Students Yearly</span>
+                    <span>Serving 400+ Students Yearly</span>
                   </div>
                   <div className="flex items-center gap-2.5 text-xs text-slate-500 font-medium">
                     <Shield className="h-4 w-4 text-emerald-500" />
@@ -131,12 +152,13 @@ export default function App() {
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <span className="text-[9px] font-semibold text-slate-400 font-sans hover:text-slate-600 transition-colors cursor-pointer">
-                        Roots
-                      </span>
-                      <span className="text-[9px] font-semibold text-slate-400 font-sans hover:text-slate-600 transition-colors cursor-pointer">
-                        Impact
-                      </span>
+                      <button
+                        onClick={() => setProposalModalOpen(true)}
+                        className="text-[9px] font-semibold text-blue-600 font-sans hover:underline cursor-pointer"
+                      >
+                        Proposal Doc
+                      </button>
+                      <span className="text-slate-300">|</span>
                       {/* Avatar badge floating near right corner */}
                       <img
                         src="/src/assets/images/founder_brian_1782306851692.jpg"
@@ -160,7 +182,7 @@ export default function App() {
                     {/* Left Mini-Card Card (Dark) */}
                     <div className="col-span-2 bg-slate-900 text-white rounded-[20px] p-3.5 flex flex-col justify-between shadow-md">
                       <div className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-semibold">
-                        Llowe
+                        Capacity
                       </div>
                       <div className="mt-2.5">
                         <span className="text-lg font-black font-display text-white">80</span>
@@ -174,7 +196,7 @@ export default function App() {
                         Core Service
                       </div>
                       <p className="text-[9px] text-slate-600 leading-normal font-light mt-1.5">
-                        Equipping local classrooms with durable custom workstations, solar plinths, & computer labs.
+                        Equipping classrooms with 280m² solar hub, enterprise network, & 4-tier coding labs.
                       </p>
                     </div>
                   </div>
@@ -232,7 +254,7 @@ export default function App() {
         </section>
 
         {/* Founder Story Section */}
-        <StorySection />
+        <StorySection onOpenProposalModal={() => setProposalModalOpen(true)} />
 
         {/* The Digital Deficits & Challenges Section */}
         <ChallengesSection />
@@ -255,6 +277,13 @@ export default function App() {
 
       {/* Structured Footer */}
       <Footer />
+
+      {/* Interactive Official Proposal Modal Dialog */}
+      <ProposalModal
+        isOpen={proposalModalOpen}
+        onClose={() => setProposalModalOpen(false)}
+      />
     </div>
   );
 }
+

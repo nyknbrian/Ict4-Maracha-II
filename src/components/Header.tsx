@@ -27,7 +27,7 @@ export const Header: React.FC = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -40,7 +40,7 @@ export const Header: React.FC = () => {
           </nav>
 
           {/* Actions */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
             <a
               href="https://x.com/WEBWorkUganda"
               target="_blank"
@@ -109,4 +109,6 @@ export const Header: React.FC = () => {
     </header>
   );
 };
+
 export default Header;
+
